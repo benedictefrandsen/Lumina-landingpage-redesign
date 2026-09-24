@@ -1,2 +1,2 @@
 # Lumina-landingpage rigtig
-Dette er min forbedret Lumina Landingpage. 
+Dette er min redesign af Lumina Landingpage. 
