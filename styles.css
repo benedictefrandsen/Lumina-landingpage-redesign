@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Antonio:wght@400;700&family=Bebas+Neue&family=Oswald:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Antonio:wght@400;700&display=swap');
 
 /* --- General Settings --- */
         :root {
@@ -7,6 +7,8 @@
             --btn-bg: #f5f0e6;   /* Light cream for buttons */
             --btn-text: #bcaaa0; /* Darker tone for button text */
             --nav-pill: rgba(255, 255, 255, 0.25);
+            --font-heading: 'Antonio', sans-serif;
+            --font-body: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
 
         /* --- General Reset --- */
@@ -24,6 +26,7 @@ html, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  scroll-behavior: smooth; /* Blød scroll ved anker-links i menuen */
 }
 
 body {
@@ -65,7 +68,7 @@ header {
 }
 
 .logo {
-    font-family: 'Antonio', sans-serif;
+    font-family: var(--font-heading);
     font-size: 4rem;
     font-weight: 700;
     letter-spacing: 4px;
@@ -106,7 +109,7 @@ nav a:hover {
         }
 
         h1 {
-            font-family: 'Antonio', sans-serif; 
+            font-family: var(--font-heading); 
             font-size: 6rem;
             text-transform: uppercase;
             letter-spacing: 3px;
@@ -176,7 +179,7 @@ nav a:hover {
 }
 
 .sub-heading {
-    font-family: 'Antonio', sans-serif;
+    font-family: var(--font-heading);
     font-size: 1.5rem;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -186,7 +189,7 @@ nav a:hover {
 }
 
 .headline-sub {
-    font-family: 'Antonio', sans-serif;
+    font-family: var(--font-heading);
     font-size: 2rem;;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -194,7 +197,7 @@ nav a:hover {
 }
 
 .main-heading {
-    font-family: 'Antonio', sans-serif;
+    font-family: var(--font-heading);
     font-size: 5rem;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -265,7 +268,7 @@ nav a:hover {
 
 body {
     background: #d8c2a7;
-    font-family: Arial, sans-serif;
+    font-family: var(--font-body);
 }
 
 .reviews {
@@ -465,7 +468,7 @@ body {
 }
 
 .info-title {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: var(--font-heading);
     font-size: 3.5rem;
     color: #3D3529;
     margin-bottom: 30px;
@@ -526,7 +529,7 @@ body {
 }
 
 .split-text h1 {
-  font-family: 'Antonio', sans-serif;
+  font-family: var(--font-heading);
   font-size: 2rem; 
   color: #3D3529;
   text-transform: uppercase;
@@ -584,7 +587,7 @@ body {
             margin-bottom: 30px;
             margin-top: 0;
             letter-spacing: 2px;
-            font-family: 'Oswald', sans-serif; 
+            font-family: var(--font-heading); 
         }
 
 
@@ -805,7 +808,12 @@ footer .copyright {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
+}
+
+/* Alle overskrifter bruger Antonio */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
 }
 
 body {
