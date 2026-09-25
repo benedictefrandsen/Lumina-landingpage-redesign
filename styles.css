@@ -98,15 +98,78 @@ nav a:hover {
     opacity: 0.7;
 }
 
-        /* --- Main Content --- */
-        main {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+/* --- Hero tekst og knap (nederst til venstre) --- */
+.hero-content {
+    position: absolute;
+    left: 50px;
+    bottom: 80px;
+    max-width: 440px;
+    color: var(--text-color);
+}
+
+.hero-text {
+    font-size: 1.75rem; /* 28px */
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+.hero-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    background-color: #2f2b28;
+    color: var(--text-color);
+    padding: 20px 60px;
+    border-radius: 8px;
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.hero-btn:hover {
+    background-color: #1c1a18;
+}
+
+/* --- Hero rating (nederst til højre) --- */
+.hero-rating {
+    position: absolute;
+    right: 35px;
+    bottom: 25px;
+    text-align: right;
+    color: var(--text-color);
+}
+
+.hero-stars {
+    font-size: 2.6rem;
+    line-height: 1;
+    letter-spacing: 4px;
+}
+
+/* Sidste stjerne halvt udfyldt (4,8/5) */
+.hero-stars .half {
+    background: linear-gradient(90deg, #fff 60%, rgba(255, 255, 255, 0.35) 60%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.hero-rating p {
+    font-size: 0.95rem;
+    letter-spacing: 2px;
+    margin-top: 8px;
+}
+
+/* Skjult visuelt, men læses af skærmlæsere og søgemaskiner */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
 
         h1 {
             font-family: var(--font-heading); 
@@ -117,34 +180,6 @@ nav a:hover {
             text-align: center;
             color: #fdfcf5; 
             opacity: 0.9;
-        }
-
-/* --- Text and CTA --- */
-        .description {
-            font-size: 2rem;
-            font-weight: 600;
-            text-align: center;
-            max-width: 700px;
-            line-height: 1.8;
-            margin-bottom: 25px;
-            color: #fff;
-        }
-
-        .cta-btn {
-            background-color: #3D3529;
-            color: #ffffff;
-            padding: 14px 40px;
-            border: none;
-            border-radius: 30px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-
-        .cta-btn:hover {
-            transform: scale(1.05);
         }
 
         /* --- Responsivitet (Mobil) --- */
@@ -159,6 +194,14 @@ nav a:hover {
             .logo { order: -1; font-size: 2.5rem; }
             nav { gap: 24px; }
             nav a { font-size: 1rem; }
+
+            /* Tekst og rating stables i bunden af hero */
+            .hero-content { left: 20px; right: 20px; bottom: 110px; }
+            .hero-text { font-size: 1.2rem; margin-bottom: 20px; }
+            .hero-btn { font-size: 1.1rem; padding: 14px 32px; gap: 16px; }
+            .hero-rating { left: 20px; right: auto; bottom: 25px; text-align: left; }
+            .hero-stars { font-size: 1.6rem; }
+            .hero-rating p { font-size: 0.8rem; letter-spacing: 1px; }
         }
   
 /* --- Layout Container --- */
@@ -269,57 +312,6 @@ nav a:hover {
 body {
     background: #d8c2a7;
     font-family: var(--font-body);
-}
-
-.reviews {
-    display: flex;
-    gap: 20px;
-    padding: 40px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.card {
-    background: white;
-    border-radius: 12px;
-    padding: 20px 25px;
-    width: 300px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-
-.stars {
-    color: #00b67a;
-    font-size: 22px;
-    margin-bottom: 10px;
-}
-
-.card h3 {
-    margin: 0 0 10px;
-    font-size: 14px;
-    color: black;
-}
-
-.card p {
-    font-size: 14px;
-    line-height: 1.4;
-    color: #333;
-}
-
-.footer {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-    font-size: 12px;
-    color: #666;
-}
-
-.review-text {
-    color: #6d6159;
-    font-size: 0.9rem;
-    margin-top: 5px;
-    padding: 0 15px;
-    white-space: normal;
-    text-align: center;
 }
 
 .large-image-section {
