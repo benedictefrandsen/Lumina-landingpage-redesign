@@ -2,7 +2,7 @@
 
 /* --- General Settings --- */
         :root {
-            --bg-color: #cfbdae; /* The beige background color */
+            --bg-color: #E8E4E1; /* Baggrundsfarve for hele siden */
             --text-color: #ffffff;
             --btn-bg: #f5f0e6;   /* Light cream for buttons */
             --btn-text: #bcaaa0; /* Darker tone for button text */
@@ -117,12 +117,12 @@ nav a:hover {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 30px;
+    gap: 20px;
     background-color: #2f2b28;
     color: var(--text-color);
-    padding: 20px 60px;
+    padding: 16px 44px;
     border-radius: 8px;
-    font-size: 1.6rem;
+    font-size: 1.3rem;
     font-weight: 600;
     text-decoration: none;
     transition: background-color 0.2s;
@@ -297,7 +297,7 @@ nav a:hover {
     overflow-y: hidden;
     white-space: nowrap;
     padding: 50px 0; 
-    background-color: #D0BBA6;
+    background-color: #E8E4E1;
     text-align: right;
     margin-top: 0;
 }
@@ -310,7 +310,7 @@ nav a:hover {
 }
 
 body {
-    background: #d8c2a7;
+    background: #E8E4E1;
     font-family: var(--font-body);
 }
 
@@ -325,110 +325,144 @@ body {
 /* --- Product Cards Section --- */
 .products-section {
     padding: 80px 20px;
-    background-color: #D0BBA6;
+    background-color: #E8E4E1;
 }
 
-.products-grid {
+/* Stort produktkort med farvevælger */
+.product-showcase {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    max-width: 1400px;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 60px;
+    max-width: 1300px;
     margin: 0 auto;
-}
-
-.product-card {
-    background-color: white;
+    padding: 60px;
+    background-color: #eae6e3;
     border-radius: 20px;
-    padding: 30px;
-    text-align: left;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    color: #2f2b28;
 }
 
-.product-card:hover {
-    transform: translateY(-5px);
-}
-
-.product-image-wrapper {
-    background-color: #e8e9ec;
-    border-radius: 15px;
-    padding: 20px;
-    margin-bottom: 20px;
+.product-showcase-image {
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 
-.product-image-wrapper img {
+.product-showcase-image img {
     width: 100%;
-    max-width: 220px;
+    max-width: 480px;
     height: auto;
 }
 
-.product-title {
-    font-size: 1.1rem;
+.product-name {
+    font-size: 2.2rem;
     font-weight: 700;
-    color: #333;
-    margin-bottom: 5px;
+    line-height: 1.1;
 }
 
-.product-subtitle {
-    font-size: 0.95rem;
-    color: #666;
-    margin-bottom: 10px;
+.product-type {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-top: 8px;
 }
 
 .product-price {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 15px;
+    font-size: 1.9rem;
+    font-style: italic;
+    margin-top: 18px;
 }
 
-.buy-button {
+.product-text {
+    font-size: 1.3rem;
+    line-height: 1.4;
+    margin-top: 40px;
+    max-width: 560px;
+}
+
+.product-read-more {
+    display: inline-block;
+    font-size: 1.3rem;
+    font-style: italic;
+    color: inherit;
+    text-decoration: none;
+    margin-top: 12px;
+}
+
+.product-read-more:hover {
+    text-decoration: underline;
+}
+
+.product-color-label {
+    font-size: 1.3rem;
+    margin-top: 60px;
+}
+
+.color-swatches {
+    display: flex;
+    gap: 12px;
+    margin-top: 14px;
+}
+
+.color-swatch {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    background-color: var(--swatch);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.color-swatch:hover {
+    transform: scale(1.08);
+}
+
+/* Den valgte farve får en mørk ring */
+.color-swatch.active {
+    outline: 2px solid #2f2b28;
+    outline-offset: 3px;
+}
+
+.product-showcase .buy-button {
     width: 100%;
-    padding: 12px;
+    max-width: 405px;
+    margin-top: 40px;
+    padding: 18px;
     border: none;
     border-radius: 8px;
-    font-weight: 600;
-    font-size: 0.95rem;
+    background-color: #2f2b28;
+    color: #fff;
+    font-size: 1.3rem;
+    font-weight: 700;
     cursor: pointer;
-    transition: opacity 0.3s ease;
-    background-color: #E8DDD0;
-    color: #333;
+    transition: background-color 0.2s;
 }
 
-.buy-button:hover {
-    opacity: 0.8;
+.product-showcase .buy-button:hover {
+    background-color: #1c1a18;
 }
-
-.buy-button.lavender {
-    background-color: #C3DDE8;
-}
-
-.buy-button.green {
-    background-color: #A9C5A0;
-}
-
-.buy-button.rose {
-    background-color: #F4C2C2;
-}
-
 
 @media (max-width: 900px) {
-    .products-grid {
+    .product-showcase {
         grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 30px 20px;
     }
-    
-    .large-card {
-        grid-column: span 1;
-    }
+
+    .product-name { font-size: 1.8rem; }
+    .product-price { font-size: 1.5rem; }
+    .product-text,
+    .product-read-more,
+    .product-color-label { font-size: 1.1rem; }
+    .product-text { margin-top: 24px; }
+    .product-color-label { margin-top: 30px; }
+    .product-showcase .buy-button { max-width: none; }
 }
 
 /* --- Productinformation Section --- */
 .product-info-section {
     padding: 80px 20px;
-    background-color: #D0BBA6;
+    background-color: #E8E4E1;
 }
 
 .product-info-container {
@@ -809,7 +843,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 body {
-    background-color: #D0BBA6;
+    background-color: #E8E4E1;
     color: #f4efea;
 }
 

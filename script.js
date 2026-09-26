@@ -51,3 +51,28 @@ function initBuyButtons() {
 // Init ved load + re-init hvis DOM senere ændres
 document.addEventListener('DOMContentLoaded', initBuyButtons);
 // Hvis du dynamisk indsætter produkter kan du køre initBuyButtons() igen efter indsættelse
+
+// Farvevælger: skifter billede og farvenavn når man klikker på en rund knap
+function initColorSwatches() {
+  const swatches = document.querySelectorAll('.color-swatch');
+  const image = document.getElementById('product-image');
+  const colorName = document.getElementById('product-color-name');
+  if (!swatches.length || !image || !colorName) return;
+
+  swatches.forEach(swatch => {
+    swatch.addEventListener('click', () => {
+      swatches.forEach(s => {
+        s.classList.remove('active');
+        s.setAttribute('aria-pressed', 'false');
+      });
+      swatch.classList.add('active');
+      swatch.setAttribute('aria-pressed', 'true');
+
+      image.src = swatch.dataset.image;
+      image.alt = `Lumina Bloom højtaler i ${swatch.dataset.name}`;
+      colorName.textContent = swatch.dataset.name;
+    });
+  });
+}
+
+document.addEventListener('DOMContentLoaded', initColorSwatches);

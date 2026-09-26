@@ -36,7 +36,7 @@
         <div class="hero-content">
             <h1 class="visually-hidden">Lumina Bloom</h1>
             <p class="hero-text">
-                Portabel højtaler med 18 timers spilletid og kraftfuld lyd. Designet til at følge din livsstil.
+                Bærbar højtaler med 18 timers spilletid og kraftfuld lyd. Designet til at følge din livsstil.
             </p>
             <a href="#shop" class="hero-btn">Udforsk højtaleren <span aria-hidden="true">&rarr;</span></a>
         </div>
@@ -52,47 +52,36 @@
 
 <script src="script.js"></script>
 
-    <!-- PRODUCT CARDS SECTION -->
+    <!-- PRODUKT SECTION -->
     <section class="products-section" id="shop">
-        <div class="products-grid">
-            <div class="product-card">
-                <div class="product-image-wrapper">
-                    <img src="images/beigelumina.png" alt="Moonlight White">
+        <div class="product-showcase">
+            <div class="product-showcase-image">
+                <img src="images/greenlumina.png" alt="Lumina Bloom højtaler i Sage Green" id="product-image">
+            </div>
+
+            <div class="product-showcase-info">
+                <h2 class="product-name">LUMINA BLOOM</h2>
+                <p class="product-type">Bluetooth højtaler</p>
+                <p class="product-price">1995 DKK</p>
+
+                <p class="product-text">
+                    Kraftfuld lyd i et blødt og minimalistisk design. Op til 18 timers spilletid, justerbart LED-lys og Social Connect. Skabt til at dele musikken, hvor du er.
+                </p>
+                <a href="#produktinfo" class="product-read-more">Læs mere</a>
+
+                <p class="product-color-label">
+                    <strong>Farve</strong> - <em id="product-color-name">Sage Green</em>
+                </p>
+
+                <!-- Farvevælger: data-image og data-name bruges af script.js -->
+                <div class="color-swatches" role="group" aria-label="Vælg farve">
+                    <button class="color-swatch active" style="--swatch: #A9C5A0" data-image="images/greenlumina.png" data-name="Sage Green" aria-label="Sage Green" aria-pressed="true"></button>
+                    <button class="color-swatch" style="--swatch: #F4C2C2" data-image="images/dustyrose.png" data-name="Dusty Rose" aria-label="Dusty Rose" aria-pressed="false"></button>
+                    <button class="color-swatch" style="--swatch: #E8DDD0" data-image="images/beigelumina.png" data-name="Moonlight White" aria-label="Moonlight White" aria-pressed="false"></button>
+                    <button class="color-swatch" style="--swatch: #C3DDE8" data-image="images/blaacard.png" data-name="Lavender Mist" aria-label="Lavender Mist" aria-pressed="false"></button>
                 </div>
-                <h3 class="product-title">Lumina Bloom højtaler</h3>
-                <p class="product-subtitle">Moonlight White</p>
-                <p class="product-price">DKK 1995</p>
+
                 <button class="buy-button">Køb nu</button>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image-wrapper">
-                    <img src="images/blaacard.png" alt="Lavender Mist">
-                </div>
-                <h3 class="product-title">Lumina Bloom højtaler</h3>
-                <p class="product-subtitle">Lavender Mist</p>
-                <p class="product-price">DKK 1995</p>
-                <button class="buy-button lavender">Køb nu</button>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image-wrapper">
-                    <img src="images/greenlumina.png" alt="Sage Green">
-                </div>
-                <h3 class="product-title">Lumina Bloom højtaler</h3>
-                <p class="product-subtitle">Sage Green</p>
-                <p class="product-price">DKK 1995</p>
-                <button class="buy-button green">Køb nu</button>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image-wrapper">
-                    <img src="images/dustyrose.png" alt="Dusty Rose">
-                </div>
-                <h3 class="product-title">Lumina Bloom højtaler</h3>
-                <p class="product-subtitle">Dusty Rose</p>
-                <p class="product-price">DKK 1995</p>
-                <button class="buy-button rose">Køb nu</button>
             </div>
         </div>
 
