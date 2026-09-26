@@ -351,6 +351,7 @@ body {
     width: 100%;
     max-width: 480px;
     height: auto;
+    mix-blend-mode: multiply; /* Gør hvid billedbaggrund usynlig mod kortets farve */
 }
 
 .product-name {
@@ -460,46 +461,38 @@ body {
 }
 
 /* --- Productinformation Section --- */
+/* Fuld bredde med billede af hænder der holder højtaleren i baggrunden */
 .product-info-section {
-    padding: 80px 20px;
-    background-color: #E8E4E1;
+    width: 100vw;
+    margin-left: calc(50% - 50vw); /* Går helt ud til kanten trods body padding */
+    min-height: 780px;
+    padding: 50px 60px;
+    background-color: #bdbcba; /* Vises indtil billedet er indlæst */
+    background-image: url("images/produktspecifikationer.webp");
+    background-size: cover;
+    background-position: right center;
+    background-repeat: no-repeat;
 }
 
-.product-info-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 50px;
-    max-width: 1400px;
-    margin: 0 auto;
-    align-items: center;
-}
-
-.info-image {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-left: 60px; 
-}
-
-.info-image img {
-    width: 100%;
-    max-width: 450px;
-    border-radius: 30px;
-    height: auto;
-    filter: drop-shadow(0 10px 30px rgba(0,0,0,0.15));
-}
-
-.info-content {
-    color: #ffffff;
+.product-info-content {
+    max-width: 560px;
 }
 
 .info-title {
     font-family: var(--font-heading);
     font-size: 3.5rem;
-    color: #3D3529;
-    margin-bottom: 30px;
-    letter-spacing: 3px;
+    font-weight: 700;
+    color: #2f2b28;
     line-height: 1;
+    letter-spacing: 1px;
+    margin-bottom: 40px;
+}
+
+/* Lys, halvgennemsigtig boks bag listen */
+.info-box {
+    background-color: rgba(255, 255, 255, 0.55);
+    border-radius: 20px;
+    padding: 35px 45px;
 }
 
 .info-list {
@@ -509,32 +502,76 @@ body {
 }
 
 .info-list li {
-    
-    font-size: 16px;
-    line-height: 1.8;
-    margin-bottom: 15px;
-    padding-left: 25px;
     position: relative;
-    color: #3D3529;
+    padding-left: 20px;
+    margin-bottom: 18px;
+    font-size: 1.15rem;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #2f2b28;
 }
 
 .info-list li::before {
     content: "•";
     position: absolute;
     left: 0;
-    color: #3D3529;
-    font-size: 1.5rem;
-    line-height: 1.2;
+}
+
+/* "+ Flere specifikationer og information" */
+.info-more summary {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 30px 0 5px 70px;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: #2f2b28;
+    cursor: pointer;
+    list-style: none; /* Fjerner standard-pilen */
+}
+
+.info-more summary::-webkit-details-marker {
+    display: none;
+}
+
+.info-more summary::before {
+    content: "+";
+    font-size: 1.8rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 1;
+}
+
+.info-more[open] summary::before {
+    content: "−";
+}
+
+.info-more .info-list {
+    margin-top: 25px;
 }
 
 @media (max-width: 900px) {
-    .product-info-container {
-        grid-template-columns: 1fr;
-        gap: 40px;
+    .product-info-section {
+        min-height: 0;
+        padding: 40px 20px 320px; /* Plads nederst så hænderne på billedet ses */
+        background-position: 70% bottom;
     }
-    
+
     .info-title {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
+        margin-bottom: 24px;
+    }
+
+    .info-box {
+        padding: 25px 25px;
+    }
+
+    .info-list li {
+        font-size: 1rem;
+    }
+
+    .info-more summary {
+        margin-left: 0;
     }
 }
 
