@@ -741,55 +741,61 @@ body {
             }
         }
 
-       .gallery-section {
+.gallery-section {
     margin: 0;
-    padding: 40px var(--page-margin);
+    padding: 60px var(--page-margin) 100px;
 }
 
 .gallery-section h1 {
     text-align: center;
     font-size: 48px;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
     color: var(--heading-color);
 }
 
-/* Grid styling */
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-}
-
-/* Images */
-.gallery-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 4px;
-}
-
-/* Instagram box */
-.instagram-box {
-    background: #77685D;
+/* Tre Instagram-kort side om side */
+.instagram-cards {
     display: flex;
     justify-content: center;
-    align-items: center;
-    padding: 40px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background 0.3s ease;
+    gap: 60px;
 }
 
-.instagram-box:hover {
-    background: #eda897;
+.instagram-card {
+    flex: 0 1 300px; /* Højst 300px bredt */
+    display: block;
+    border-radius: 30px;
+    transition: transform 0.3s ease;
 }
 
-.insta-link {
-    text-decoration: none;
-    font-size: 18px;
-    color: white;
-    letter-spacing: 1px;
-    font-weight: bold;
+.instagram-card:hover {
+    transform: translateY(-5px);
+}
+
+.instagram-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.06));
+}
+
+/* Mobil: kortene stables under hinanden */
+@media (max-width: 768px) {
+    .gallery-section h1 {
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
+
+    .instagram-cards {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .instagram-card {
+        flex: none;
+        width: 100%;
+        max-width: 300px;
+    }
 }
 
 /* --- Footer --- */
