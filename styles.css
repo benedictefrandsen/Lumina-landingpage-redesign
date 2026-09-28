@@ -1082,7 +1082,7 @@ footer {
 
 .split-text .headline-left,
 .headline-left {
-  color: var(--heading-color);
+  color: rgb(250, 105, 129); /* Pink "Nyhed" */
 }
 
 * {
