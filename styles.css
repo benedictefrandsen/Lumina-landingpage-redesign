@@ -190,8 +190,26 @@ nav a:hover {
             opacity: 0.9;
         }
 
+        /* --- Responsivitet (Tablet / lille laptop) --- */
+        /* Menuen bliver mindre, så den ikke støder ind i logoet */
+        @media (max-width: 1200px) {
+            nav { gap: 32px; }
+            nav a { font-size: 1.15rem; white-space: nowrap; }
+            .logo { font-size: 3rem; }
+        }
+
         /* --- Responsivitet (Mobil) --- */
         @media (max-width: 768px) {
+            /* Svag mørk toning i bunden, så den hvide tekst kan læses oven på billedet */
+            .hero::after {
+                content: "";
+                position: absolute;
+                inset: 50% 0 0 0;
+                background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.45));
+                pointer-events: none;
+            }
+            .hero-content, .hero-rating { z-index: 1; }
+
             h1 { font-size: 3.5rem; }
             header {
                 grid-template-columns: 1fr;
@@ -618,7 +636,7 @@ body {
 @media (max-width: 900px) {
     /* Mobil: teksten øverst, billedet under */
     .product-info-section {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr); /* Kolonnen må ikke blive bredere end skærmen */
         gap: 30px;
         padding: 50px var(--page-margin);
     }
@@ -629,6 +647,7 @@ body {
 
     .info-title {
         margin-bottom: 24px;
+        font-size: clamp(1.6rem, 8vw, 2rem); /* Skrumper på meget smalle skærme (320px) */
     }
 
     .accordion-item summary {
@@ -662,7 +681,7 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 40px;
-  margin: -80px 0 80px;
+  margin: 0 0 100px; /* Ingen negativ margen, så "Nyhed" ikke rammer listen over */
   padding: 0 var(--page-margin);
 }
 
@@ -704,12 +723,12 @@ body {
 @media (max-width: 900px) {
   .split-section {
     flex-direction: column;
-    text-align: center;
+    align-items: stretch;
     padding: 0 var(--page-margin);
     margin: 40px 0;
   }
   .split-text p {
-    margin: 0 auto 24px;
+    margin: 0 0 24px;
   }
 }
 
@@ -1096,6 +1115,7 @@ footer {
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
     color: var(--heading-color);
+    overflow-wrap: break-word; /* Lange ord knækker i stedet for at stikke ud af skærmen */
 }
 
 body {
