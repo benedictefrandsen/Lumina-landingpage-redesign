@@ -76,3 +76,18 @@ function initColorSwatches() {
 }
 
 document.addEventListener('DOMContentLoaded', initColorSwatches);
+
+// Nyhedsbrev i footeren: viser en bekræftelse i stedet for at genindlæse siden
+function initNewsletterForm() {
+  const form = document.getElementById('newsletter-form');
+  if (!form || form.dataset.bound) return;
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    showCartToast('Tak! Du er nu tilmeldt vores nyhedsbrev');
+    form.reset();
+  });
+  form.dataset.bound = '1';
+}
+
+document.addEventListener('DOMContentLoaded', initNewsletterForm);

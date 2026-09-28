@@ -9,6 +9,14 @@
             --nav-pill: rgba(255, 255, 255, 0.25);
             --font-heading: 'Antonio', sans-serif;
             --font-body: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            --heading-color: #332E29; /* Farve på alle overskrifter */
+            /* Samme margen i siderne på hele siden. På meget brede skærme
+               vokser margenen, så indholdet højst bliver 1600px bredt. */
+            --page-margin: max(50px, calc((100vw - 1600px) / 2));
+        }
+
+        @media (max-width: 768px) {
+            :root { --page-margin: 20px; }
         }
 
         /* --- General Reset --- */
@@ -33,7 +41,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  padding: 20px 40px 0; 
+  padding: 20px 0 0; /* Siderne styres af --page-margin i hver sektion */
   overflow-x: hidden;
 }
 
@@ -45,7 +53,7 @@ body {
     flex-shrink: 0; /* Undgår at body (flex) klemmer højden */
     margin-top: -20px; /* Ophæver body padding i toppen */
     margin-left: calc(50% - 50vw); /* Går helt ud til kanten trods body padding */
-    margin-bottom: 40px;
+    margin-bottom: 0;
 }
 
 .hero-image {
@@ -64,7 +72,7 @@ header {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    padding: 40px 50px;
+    padding: 40px var(--page-margin);
 }
 
 .logo {
@@ -101,14 +109,14 @@ nav a:hover {
 /* --- Hero tekst og knap (nederst til venstre) --- */
 .hero-content {
     position: absolute;
-    left: 50px;
+    left: var(--page-margin);
     bottom: 80px;
     max-width: 440px;
     color: var(--text-color);
 }
 
 .hero-text {
-    font-size: 1.75rem; /* 28px */
+    font-size: 1.5rem; /* 24px */
     line-height: 1.6;
     margin-bottom: 40px;
 }
@@ -135,7 +143,7 @@ nav a:hover {
 /* --- Hero rating (nederst til højre) --- */
 .hero-rating {
     position: absolute;
-    right: 35px;
+    right: var(--page-margin);
     bottom: 25px;
     text-align: right;
     color: var(--text-color);
@@ -178,7 +186,7 @@ nav a:hover {
             letter-spacing: 3px;
             margin-bottom: 40px;
             text-align: center;
-            color: #fdfcf5; 
+            color: var(--heading-color);
             opacity: 0.9;
         }
 
@@ -189,17 +197,17 @@ nav a:hover {
                 grid-template-columns: 1fr;
                 justify-items: center;
                 gap: 12px;
-                padding: 20px;
+                padding: 20px var(--page-margin);
             }
             .logo { order: -1; font-size: 2.5rem; }
             nav { gap: 24px; }
             nav a { font-size: 1rem; }
 
             /* Tekst og rating stables i bunden af hero */
-            .hero-content { left: 20px; right: 20px; bottom: 110px; }
-            .hero-text { font-size: 1.2rem; margin-bottom: 20px; }
+            .hero-content { left: var(--page-margin); right: var(--page-margin); bottom: 110px; }
+            .hero-text { font-size: 1.1rem; margin-bottom: 20px; }
             .hero-btn { font-size: 1.1rem; padding: 14px 32px; gap: 16px; }
-            .hero-rating { left: 20px; right: auto; bottom: 25px; text-align: left; }
+            .hero-rating { left: var(--page-margin); right: auto; bottom: 25px; text-align: left; }
             .hero-stars { font-size: 1.6rem; }
             .hero-rating p { font-size: 0.8rem; letter-spacing: 1px; }
         }
@@ -324,7 +332,7 @@ body {
 
 /* --- Product Cards Section --- */
 .products-section {
-    padding: 80px 20px;
+    padding: 40px var(--page-margin) 80px; /* Mindre luft op til headeren */
     background-color: #E8E4E1;
 }
 
@@ -334,7 +342,6 @@ body {
     grid-template-columns: 1fr 1fr;
     align-items: center;
     gap: 60px;
-    max-width: 1300px;
     margin: 0 auto;
     padding: 60px;
     background-color: #eae6e3;
@@ -358,6 +365,7 @@ body {
     font-size: 2.2rem;
     font-weight: 700;
     line-height: 1.1;
+    letter-spacing: 1px;
 }
 
 .product-type {
@@ -500,9 +508,8 @@ body {
     align-items: center;
     gap: 60px;
     width: 100%;
-    max-width: 1300px;
     margin: 0 auto;
-    padding: 20px 20px 80px; /* Mindre luft i toppen, tættere på produktkortet */
+    padding: 20px var(--page-margin) 80px; /* Mindre luft i toppen, tættere på produktkortet */
 }
 
 .product-info-content {
@@ -529,7 +536,7 @@ body {
     font-family: var(--font-heading);
     font-size: 2rem; /* Samme størrelse som Social Connect */
     font-weight: 700;
-    color: #2f2b28;
+    color: var(--heading-color);
     line-height: 1;
     letter-spacing: 1px;
     margin-bottom: 40px;
@@ -597,7 +604,7 @@ body {
     font-size: 1.05rem;
     font-weight: 700;
     line-height: 1.4;
-    color: #2f2b28;
+    color: var(--heading-color);
 }
 
 .accordion-item p {
@@ -613,7 +620,7 @@ body {
     .product-info-section {
         grid-template-columns: 1fr;
         gap: 30px;
-        padding: 50px 0;
+        padding: 50px var(--page-margin);
     }
 
     .product-info-image {
@@ -655,9 +662,8 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 40px;
-  max-width: 1400px;
-  margin: -80px auto 80px;
-  padding: 0 60px;
+  margin: -80px 0 80px;
+  padding: 0 var(--page-margin);
 }
 
 .split-text {
@@ -668,7 +674,7 @@ body {
 .split-text h1 {
   font-family: var(--font-heading);
   font-size: 2rem; 
-  color: #3D3529;
+  color: var(--heading-color);
   text-transform: uppercase;
   letter-spacing: 2px;
   margin-bottom: 20px;
@@ -699,8 +705,8 @@ body {
   .split-section {
     flex-direction: column;
     text-align: center;
-    padding: 0 20px;
-    margin: 40px auto;
+    padding: 0 var(--page-margin);
+    margin: 40px 0;
   }
   .split-text p {
     margin: 0 auto 24px;
@@ -736,16 +742,15 @@ body {
         }
 
        .gallery-section {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 40px 20px;
+    margin: 0;
+    padding: 40px var(--page-margin);
 }
 
 .gallery-section h1 {
     text-align: center;
     font-size: 48px;
     margin-bottom: 40px;
-    color: #3D3529;; 
+    color: var(--heading-color);
 }
 
 /* Grid styling */
@@ -787,142 +792,275 @@ body {
     font-weight: bold;
 }
 
-/* SUBSCRIBE SECTION */
-
-.subscribe {
-    margin-bottom: 0;
-    padding-bottom: 0;
-}
-
-.subscribe-section {
-    text-align: center;
-    padding: 80px 20px;
-}
-
-.subscribe-section h1 {
-    font-size: 70px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    color: #3D3529;
-    margin-bottom: 20px;
-}
-
-.subscribe-section .subtext {
-    font-size: 16px;
-    margin-bottom: 35px;
-}
-
-.input-wrapper {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
-
-.input-wrapper input {
-    width: 280px;
-    padding: 14px;
-    border-radius: 12px;
-    border: none;
-    background: #d9dce2;
-    font-size: 14px;
-}
-
-.input-wrapper button {
-    background: #f4b8ab;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 12px;
-    font-size: 15px;
-    cursor: pointer;
-}
-
-/* FOOTER STYLING */
+/* --- Footer --- */
 footer {
-  width: 100%;
-  position: relative;
-  box-sizing: border-box;
-  padding: 50px 120px 50px 70px;
-  background-color: #bfb2a0;
-  color: #333333;
-  overflow: hidden;
-  margin: 0 auto;
+    width: 100%;
+    padding: 70px var(--page-margin) 30px;
+    background-color: #bfbdb8;
+    border-radius: 20px 20px 0 0;
+    color: var(--heading-color);
 }
 
-/* Footer content */
-.footer-content {
+.footer-top {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 0.8fr;
+    gap: 40px;
+    padding-bottom: 60px;
+}
+
+.footer-logo {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: 2.4rem;
+    font-weight: 700;
+    letter-spacing: 6px;
+    line-height: 1;
+    color: var(--heading-color);
+    text-decoration: none;
+    margin-left: 25px;
+}
+
+/* Nyhedsbrev */
+.footer-newsletter {
+    margin-top: 60px;
+    max-width: 300px;
+}
+
+.footer-newsletter label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+}
+
+.newsletter-field {
     display: flex;
-    gap: 120px;
-    margin-bottom: 10px;
+    align-items: center;
+    gap: 12px;
 }
 
-.footer-content h3 {
-    font-size: 17px;
-    margin-bottom: 10px;
+.newsletter-input {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--heading-color);
 }
 
-.footer-content ul {
+.newsletter-input svg {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+
+.newsletter-input input {
+    width: 100%;
+    border: none;
+    background: none;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    color: var(--heading-color);
+    outline: none;
+}
+
+.newsletter-input input::placeholder {
+    color: #6f6962;
+}
+
+.newsletter-input:focus-within {
+    border-bottom-width: 2px;
+}
+
+.newsletter-submit {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    margin-bottom: 14px;
+    border: 2px solid var(--heading-color);
+    border-radius: 50%;
+    background: none;
+    color: var(--heading-color);
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.newsletter-submit:hover {
+    background-color: var(--heading-color);
+    color: #bfbdb8;
+}
+
+.newsletter-submit svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Link-kolonner */
+.footer-column h3 {
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    margin-bottom: 24px;
+}
+
+.footer-column ul {
     list-style: none;
-    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
-.footer-content li {
-    margin-bottom: 8px;
-    font-size: 14px;
+.footer-column a {
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    color: var(--heading-color);
+    text-decoration: none;
 }
 
-/* Payment methods */
+.footer-column a:hover {
+    text-decoration: underline;
+}
+
+/* Sociale medier med ikon */
+.footer-social a {
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+    letter-spacing: 2px;
+}
+
+.footer-social svg {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+
+/* Bundlinje */
+.footer-bottom {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(51, 46, 41, 0.5);
+}
+
 .payment-icons {
-  position: absolute;
-  left: 70px;            
-  bottom: 1px;          
-  display: flex;
-  gap: 15px;
-  margin: 0;
-  z-index: 10;
-  align-items: center;
-  transform: none;       
+    display: flex;
+    align-items: center;
+    gap: 30px;
 }
 
 .payment-icons img {
-  height: 30px;
+    height: 44px;
+    width: auto;
 }
 
-.payment-icons img[src*="mp.png"]  { height: 40px; }
-.payment-icons img[src*="applepay.png"] { height: 30px; }
-
-/* Mobile adjustment — move closer to the edge */
-@media (max-width: 480px) {
-  .payment-icons { left: 16px; bottom: 12px; gap: 10px; }
-  .payment-icons img { height: 26px; }
+/* MobilePay-logoet har meget luft omkring sig og skal være større */
+.payment-icons img[src*="mp.png"] {
+    height: 58px;
 }
 
-
-/* Copyright */
-footer .copyright {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 10px;       
-  margin: 0;
-  font-size: 14px;
-  opacity: 0.7;
-  text-align: center;
-  z-index: 5;
+.copyright {
+    font-size: 0.95rem;
+    letter-spacing: 3px;
 }
 
-/* Social icons */
-.socials {
-    position: absolute;
-    right: 50px;
-    bottom: 10px;
+.footer-legal {
     display: flex;
-    gap: 20px;
+    justify-content: flex-end;
+    gap: 40px;
+    list-style: none;
 }
 
-.socials img {
-    height: 35px;
+.footer-legal a {
+    font-size: 0.95rem;
+    letter-spacing: 2px;
+    color: var(--heading-color);
+    text-decoration: none;
 }
 
+.footer-legal a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 1100px) {
+    .footer-top {
+        grid-template-columns: 1fr 1fr;
+        gap: 50px 40px;
+    }
+
+    .footer-newsletter {
+        margin-top: 40px;
+    }
+
+    .footer-bottom {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .payment-icons {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 600px) {
+    footer {
+        padding-top: 50px;
+    }
+
+    .footer-top {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding-bottom: 40px;
+    }
+
+    .footer-logo {
+        margin-left: 0;
+        font-size: 2.4rem;
+    }
+
+    .footer-column h3 {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+    }
+
+    .footer-column ul {
+        gap: 16px;
+    }
+
+    .footer-column a {
+        font-size: 0.95rem;
+    }
+
+    .payment-icons {
+        gap: 18px;
+    }
+
+    .payment-icons img {
+        height: 26px;
+    }
+
+    .payment-icons img[src*="mp.png"] {
+        height: 36px;
+    }
+
+    .footer-legal {
+        gap: 24px;
+    }
+}
 
 .headline-left {
   display: block;
@@ -938,7 +1076,7 @@ footer .copyright {
 
 .split-text .headline-left,
 .headline-left {
-  color: rgb(250, 105, 129); 
+  color: var(--heading-color);
 }
 
 * {
@@ -951,6 +1089,7 @@ footer .copyright {
 /* Alle overskrifter bruger Antonio */
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
+    color: var(--heading-color);
 }
 
 body {
@@ -984,8 +1123,8 @@ background-color: #f5f0e6;
 .title {
     font-size: 72px;
     letter-spacing: 4px;
-    margin-bottom: 40px;
-    color: #3D3529;
+    margin-bottom: 24px;
+    color: var(--heading-color);
 }
 
 .content {
@@ -1011,7 +1150,7 @@ color: #3D3529;
 .text-block h3 {
     margin-top: 20px;
     font-size: 22px;
-    color: #3D3529;
+    color: var(--heading-color);
 }
 
 .product-section {
