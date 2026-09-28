@@ -106,6 +106,85 @@ nav a:hover {
     opacity: 0.7;
 }
 
+/* --- Burgermenu (kun mobil – skjult på større skærme) --- */
+.menu-toggle,
+.mobile-menu {
+    display: none;
+}
+
+.menu-toggle {
+    position: relative;
+    z-index: 2; /* Ligger over den åbne menu, så den kan lukkes igen */
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    border-radius: 2px;
+    background-color: var(--text-color);
+    transition: transform 0.3s ease, opacity 0.2s ease, background-color 0.3s ease;
+}
+
+/* Når menuen er åben, bliver de tre streger til et mørkt kryds */
+.menu-toggle[aria-expanded="true"] span {
+    background-color: var(--heading-color);
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Menuen dækker hele skærmen */
+.mobile-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    flex-direction: column;
+    justify-content: center;
+    gap: 24px;
+    padding: 100px var(--page-margin) 40px;
+    background-color: #E8E4E1;
+    overflow-y: auto;
+}
+
+.mobile-menu a {
+    font-family: var(--font-heading);
+    font-size: 2.4rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--heading-color);
+}
+
+/* Siden bag menuen kan ikke scrolles, mens menuen er åben */
+body.menu-open {
+    overflow: hidden;
+}
+
+/* Logoet ligger over menuen og bliver mørkt, så det kan ses på den lyse baggrund */
+body.menu-open .logo {
+    position: relative;
+    z-index: 2;
+    color: var(--heading-color);
+}
+
 /* --- Hero tekst og knap (nederst til venstre) --- */
 .hero-content {
     position: absolute;
@@ -211,15 +290,19 @@ nav a:hover {
             .hero-content, .hero-rating { z-index: 1; }
 
             h1 { font-size: 3.5rem; }
+
+            /* Logo til venstre, burgerknap til højre */
             header {
-                grid-template-columns: 1fr;
-                justify-items: center;
-                gap: 12px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
                 padding: 20px var(--page-margin);
+                z-index: 10;
             }
-            .logo { order: -1; font-size: 2.5rem; }
-            nav { gap: 24px; }
-            nav a { font-size: 1rem; }
+            .logo { font-size: 2.5rem; }
+            .nav-left, .nav-right { display: none; }
+            .menu-toggle { display: flex; }
+            .mobile-menu:not([hidden]) { display: flex; }
 
             /* Tekst og rating stables i bunden af hero */
             .hero-content { left: var(--page-margin); right: var(--page-margin); bottom: 110px; }

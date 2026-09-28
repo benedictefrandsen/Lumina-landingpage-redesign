@@ -82,3 +82,49 @@ function initNewsletterForm() {
 }
 
 document.addEventListener('DOMContentLoaded', initNewsletterForm);
+
+// Burgermenu på mobil: åbner/lukker menuen og holder skærmlæsere opdateret
+function initMobileMenu() {
+  const toggle = document.querySelector('.menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  if (!toggle || !menu || toggle.dataset.bound) return;
+
+  function openMenu() {
+    menu.hidden = false;
+    toggle.setAttribute('aria-expanded', 'true');
+    toggle.setAttribute('aria-label', 'Luk menu');
+    document.body.classList.add('menu-open');
+    menu.querySelector('a').focus();
+  }
+
+  function closeMenu(returnFocus = true) {
+    menu.hidden = true;
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Åbn menu');
+    document.body.classList.remove('menu-open');
+    if (returnFocus) toggle.focus();
+  }
+
+  toggle.addEventListener('click', () => {
+    menu.hidden ? openMenu() : closeMenu();
+  });
+
+  // Luk når man vælger et link, så man ser den sektion man hopper til
+  menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => closeMenu(false));
+  });
+
+  // Luk med Escape-tasten
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !menu.hidden) closeMenu();
+  });
+
+  // Luk hvis skærmen bliver bred nok til den almindelige menu
+  window.matchMedia('(min-width: 769px)').addEventListener('change', (e) => {
+    if (e.matches && !menu.hidden) closeMenu(false);
+  });
+
+  toggle.dataset.bound = '1';
+}
+
+document.addEventListener('DOMContentLoaded', initMobileMenu);
