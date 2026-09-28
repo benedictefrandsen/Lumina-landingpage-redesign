@@ -92,7 +92,6 @@ function initMobileMenu() {
   function openMenu() {
     menu.hidden = false;
     toggle.setAttribute('aria-expanded', 'true');
-    toggle.setAttribute('aria-label', 'Luk menu');
     document.body.classList.add('menu-open');
     menu.querySelector('a').focus();
   }
@@ -100,7 +99,6 @@ function initMobileMenu() {
   function closeMenu(returnFocus = true) {
     menu.hidden = true;
     toggle.setAttribute('aria-expanded', 'false');
-    toggle.setAttribute('aria-label', 'Åbn menu');
     document.body.classList.remove('menu-open');
     if (returnFocus) toggle.focus();
   }
