@@ -20,15 +20,20 @@
 
         <header>
             <nav class="nav-left">
-              <a href="#shop">Shop</a>
-                <a href="about.html">Om os</a>
+                <a href="#shop">Shop</a>
                 <a href="#produktinfo">Produktinfo</a>
+                <a href="about.html">Om os</a>
+                <a href="#kontakt">Kontakt</a>
             </nav>
             <a href="index.html" class="logo">LUMINA</a>
             <nav class="nav-right">
-                <a href="#kontakt">Kontakt</a>
-                <a href="#">Søg</a>
-                <a href="#">Kurv</a>
+                <!-- Ikoner i stedet for tekst – aria-label giver dem et navn til skærmlæsere -->
+                <a href="#" class="nav-icon" aria-label="Søg">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+                </a>
+                <a href="#" class="nav-icon" aria-label="Kurv">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.2 12.1a1 1 0 0 1-1 .9H7.2a1 1 0 0 1-1-.9z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+                </a>
             </nav>
 
             <!-- Burgermenu: vises kun på mobil -->
@@ -40,8 +45,8 @@
 
             <nav class="mobile-menu" id="mobile-menu" aria-label="Menu" hidden>
                 <a href="#shop">Shop</a>
-                <a href="about.html">Om os</a>
                 <a href="#produktinfo">Produktinfo</a>
+                <a href="about.html">Om os</a>
                 <a href="#kontakt">Kontakt</a>
                 <a href="#">Søg</a>
                 <a href="#">Kurv</a>
