@@ -1,12 +1,3 @@
-/* Back-knap: fører tilbage til index.html */
-const backBtn = document.querySelector('.back-btn');
-if (backBtn) {
-  backBtn.addEventListener('click', () => {
-    // Bruger location.href så der bliver loadet index.html
-    window.location.href = 'index.html';
-  });
-}
-
 
 // Vis toast når et "Køb nu" trykkes
 function showCartToast(message = 'Produktet er tilføjet til indkøbskurven') {
