@@ -37,7 +37,16 @@
 </head>
 <body>
     <section class="hero">
-        <img src="images/headerimg.webp" alt="Lumina Bloom højtaler" class="hero-image">
+        <!-- Browseren vælger selv den mindste version, der stadig er skarp på skærmen -->
+        <img src="images/hero-1600.webp"
+             srcset="images/hero-900.webp 900w,
+                     images/hero-1600.webp 1600w,
+                     images/hero-2752.webp 2752w"
+             sizes="100vw"
+             width="2752" height="1535"
+             fetchpriority="high"
+             alt="Kvinde balancerer en lyseblå Lumina Bloom-højtaler på hovedet"
+             class="hero-image">
 
         <header>
             <nav class="nav-left">
@@ -367,9 +376,9 @@ Appen er gratis og tilgængelig i App Store og Google Play.</p>
 
         <div class="footer-bottom">
             <div class="payment-icons">
-                <img loading="lazy" src="images/mp.png" alt="MobilePay">
-                <img loading="lazy" src="images/visa.png" alt="Visa">
-                <img loading="lazy" src="images/mastercard.png" alt="Mastercard">
+                <img loading="lazy" src="images/mp.webp" alt="MobilePay">
+                <img loading="lazy" src="images/visa.webp" alt="Visa">
+                <img loading="lazy" src="images/mastercard.webp" alt="Mastercard">
                 <img loading="lazy" src="images/applepay.png" alt="Apple Pay">
             </div>
 

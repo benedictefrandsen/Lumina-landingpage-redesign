@@ -1413,7 +1413,7 @@ footer {
 }
 
 /* MobilePay-logoet har meget luft omkring sig og skal være større */
-.payment-icons img[src*="mp.png"] {
+.payment-icons img[src*="mp.webp"] {
     height: 58px;
 }
 
@@ -1493,7 +1493,7 @@ footer {
         height: 26px;
     }
 
-    .payment-icons img[src*="mp.png"] {
+    .payment-icons img[src*="mp.webp"] {
         height: 36px;
     }
 
