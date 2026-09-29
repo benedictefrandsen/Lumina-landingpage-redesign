@@ -11,6 +11,8 @@
             --font-body: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             --heading-color: #332E29; /* Farve på alle overskrifter */
             --body-size: 1rem; /* Brødtekst – samme størrelse som linkene i footeren (16px) */
+            --section-gap: 100px; /* Samme afstand mellem alle sektioner */
+            --card-pad: 60px;     /* Luft inde i produktkortet (trækkes fra, så afstanden ser ens ud) */
             /* Samme margen i siderne på hele siden. På meget brede skærme
                vokser margenen, så indholdet højst bliver 1600px bredt. */
             --page-margin: max(80px, calc((100vw - 1600px) / 2));
@@ -22,7 +24,7 @@
         }
 
         @media (max-width: 768px) {
-            :root { --page-margin: 24px; --body-size: 0.95rem; } /* 15,2px på mobil */
+            :root { --page-margin: 24px; --body-size: 0.95rem; --section-gap: 64px; } /* Mobil */
         }
 
         /* --- General Reset --- */
@@ -660,7 +662,7 @@ body {
 
 /* --- Product Cards Section --- */
 .products-section {
-    padding: 40px var(--page-margin) 80px; /* Mindre luft op til headeren */
+    padding: calc(var(--section-gap) - var(--card-pad)) var(--page-margin) 0;
     background-color: #E8E4E1;
 }
 
@@ -671,7 +673,7 @@ body {
     align-items: center;
     gap: 60px;
     margin: 0 auto;
-    padding: 60px;
+    padding: var(--card-pad);
     background-color: #eae6e3;
     border-radius: 20px;
     color: #2f2b28;
@@ -812,10 +814,12 @@ body {
 }
 
 @media (max-width: 900px) {
+    :root { --card-pad: 30px; }
+
     .product-showcase {
         grid-template-columns: 1fr;
         gap: 30px;
-        padding: 30px 20px;
+        padding: var(--card-pad) 20px;
     }
 
     .product-name { font-size: 1.8rem; }
@@ -834,7 +838,7 @@ body {
     gap: 60px;
     width: 100%;
     margin: 0 auto;
-    padding: 20px var(--page-margin) 80px; /* Mindre luft i toppen, tættere på produktkortet */
+    padding: calc(var(--section-gap) - var(--card-pad)) var(--page-margin) 0;
 }
 
 .product-info-content {
@@ -945,7 +949,7 @@ body {
     .product-info-section {
         grid-template-columns: minmax(0, 1fr); /* Kolonnen må ikke blive bredere end skærmen */
         gap: 30px;
-        padding: 50px var(--page-margin);
+        padding: calc(var(--section-gap) - var(--card-pad)) var(--page-margin) 0;
     }
 
     .product-info-image {
@@ -987,8 +991,8 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 40px;
-  margin: 0 0 100px; /* Ingen negativ margen, så "Nyhed" ikke rammer listen over */
-  padding: 0 var(--page-margin);
+  margin: 0;
+  padding: var(--section-gap) var(--page-margin) 0;
 }
 
 .split-text {
@@ -1033,8 +1037,8 @@ body {
   .split-section {
     flex-direction: column;
     align-items: stretch;
-    padding: 0 var(--page-margin);
-    margin: 40px 0;
+    padding: var(--section-gap) var(--page-margin) 0;
+    margin: 0;
   }
   .split-text p {
     margin: 0 0 24px;
@@ -1071,7 +1075,7 @@ body {
 
 .gallery-section {
     margin: 0;
-    padding: 60px var(--page-margin) 100px;
+    padding: var(--section-gap) var(--page-margin) 0;
 }
 
 .gallery-section h2 {
@@ -1134,8 +1138,8 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: stretch;
-    padding: 0 var(--page-margin); /* Samme margen som resten af siden */
-    margin-bottom: 80px; /* Luft ned til footeren */
+    padding: var(--section-gap) var(--page-margin); /* Samme afstand over og ned til footeren */
+
 }
 
 .newsletter-image img {
