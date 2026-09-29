@@ -10,6 +10,7 @@
             --font-heading: 'Antonio', sans-serif;
             --font-body: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             --heading-color: #332E29; /* Farve på alle overskrifter */
+            --body-size: 1rem; /* Brødtekst – samme størrelse som linkene i footeren (16px) */
             /* Samme margen i siderne på hele siden. På meget brede skærme
                vokser margenen, så indholdet højst bliver 1600px bredt. */
             --page-margin: max(80px, calc((100vw - 1600px) / 2));
@@ -21,7 +22,7 @@
         }
 
         @media (max-width: 768px) {
-            :root { --page-margin: 24px; }
+            :root { --page-margin: 24px; --body-size: 0.95rem; } /* 15,2px på mobil */
         }
 
         /* --- General Reset --- */
@@ -54,39 +55,51 @@ body {
 .hero {
     position: relative;
     display: flex;
-    flex-direction: column; /* Hvid menubjælke øverst, billedet under */
+    flex-direction: column;
     width: 100vw;
-    height: 100vh; /* Fylder hele skærmen */
+    height: 100vh; 
+    min-height: 520px;
     flex-shrink: 0; /* Undgår at body (flex) klemmer højden */
-    margin-top: -20px; /* Ophæver body padding i toppen */
-    margin-left: calc(50% - 50vw); /* Går helt ud til kanten trods body padding */
+    margin-top: -20px; 
+    margin-left: calc(50% - 50vw); 
     margin-bottom: 0;
+    overflow: hidden; /* Skjuler den del af billedet, der er skubbet op over kanten */
 }
 
 .hero-image {
-    flex: 1;
-    min-height: 0;
+    flex: none;
     width: 100%;
-    object-fit: cover; /* Beskærer i stedet for at strække billedet */
+    /* Billedet er 100px højere end headeren og skubbet 100px op,
+       så højtaleren kommer tættere på navbaren. Bunden beskæres ikke. */
+    height: calc(100% + 100px);
+    margin-top: -100px;
+    object-fit: cover;
+    object-position: center bottom;
     display: block;
 }
 
 /* --- Header / Navigation --- */
-/* Svævende, afrundet menubjælke oven på billedet (dæmpet hvid med brun tekst) */
+/* Menubjælke i fuld bredde – sticky: følger med, når man scroller */
 header {
-    position: absolute;
-    top: 20px;
-    left: var(--page-margin);
-    right: var(--page-margin);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     z-index: 10;
     display: grid; /* Logo til venstre, Shop/Produktinfo/Om os/Kontakt i midten, ikonerne til højre */
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
     column-gap: 24px;
-    padding: 10px 14px 10px 32px;
-    border-radius: 999px;
-    background-color: rgba(255, 255, 255, 0.85);
+    padding: 10px var(--page-margin); /* Indholdet flugter med resten af siden */
+    border-radius: 0;
+    background-color: var(--bg-color); /* Samme farve som sidens baggrund (#E8E4E1) */
     box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Når man hopper til en sektion via menuen, lander overskriften under den faste menubjælke */
+section[id],
+footer[id] {
+    scroll-margin-top: 90px;
 }
 
 .logo {
@@ -123,7 +136,7 @@ header .logo {
     padding: 8px 14px;
     border-radius: 999px;
     color: var(--heading-color);
-    font-size: 1rem;
+    font-size: 1.15rem; /* 18,4px */
     font-weight: 500;
     text-decoration: none;
     white-space: nowrap;
@@ -135,20 +148,134 @@ header .logo {
     background-color: rgba(51, 46, 41, 0.08); /* Svag brun markering ved hover */
 }
 
+/* Den side, man er på, er markeret med en tynd streg under */
+nav a[aria-current="page"] {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 6px;
+}
+
 /* Søg og Kurv som brune ikoner */
 .nav-left a.nav-icon,
-.nav-right a.nav-icon {
+.nav-right a.nav-icon,
+.nav-right button.nav-icon {
     display: grid;
     place-items: center;
     width: 44px; /* Klikfladen er 44 × 44px, så ikonerne er nemme at ramme */
     height: 44px;
     padding: 0;
+    border: none;
+    border-radius: 999px;
+    background: none;
+    color: var(--heading-color);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.nav-right button.nav-icon:hover,
+.nav-right button.nav-icon[aria-expanded="true"] {
+    background-color: rgba(51, 46, 41, 0.08);
+}
+
+/* --- Søgefelt, der folder ud under navbaren --- */
+.search-panel {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    /* Indholdet højst 720px bredt og centreret – baggrunden går stadig helt ud */
+    padding: 14px max(var(--page-margin), calc((100% - 720px) / 2)) 18px;
+    background-color: var(--bg-color);
+    border-top: 1px solid rgba(51, 46, 41, 0.12);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+}
+
+.search-panel[hidden] {
+    display: none;
+}
+
+.search-panel svg {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.search-panel-icon {
     color: var(--heading-color);
 }
 
+.search-panel input {
+    flex: 1;
+    min-width: 0;
+    padding: 12px 4px;
+    border: none;
+    border-bottom: 1.5px solid var(--heading-color);
+    background: none;
+    font-size: var(--body-size);
+    color: var(--heading-color);
+    outline: none;
+}
+
+.search-panel input::placeholder {
+    color: #6f6962; /* Kontrast ca. 4,6:1 mod baggrunden */
+}
+
+.search-panel input:focus-visible {
+    border-bottom-width: 2.5px;
+}
+
+.search-submit {
+    flex-shrink: 0;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 10px;
+    background-color: #2f2b28;
+    color: #fff;
+    font-size: var(--body-size);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.search-submit:hover {
+    background-color: #1c1a18;
+}
+
+.search-close {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 999px;
+    background: none;
+    color: var(--heading-color);
+    cursor: pointer;
+}
+
+.search-close:hover {
+    background-color: rgba(51, 46, 41, 0.08);
+}
+
+/* Markering af det søgte ord på siden */
+mark.search-hit {
+    background-color: #f4d58d;
+    color: inherit;
+    border-radius: 3px;
+}
+
 .nav-icon svg {
-    width: 22px;
-    height: 22px;
+    width: 26px;
+    height: 26px;
     fill: none;
     stroke: currentColor;
     stroke-width: 1.8;
@@ -216,13 +343,23 @@ header .logo {
     overflow-y: auto;
 }
 
-.mobile-menu a {
+.mobile-menu a,
+.mobile-menu button {
     font-family: var(--font-heading);
     font-size: 2.4rem;
     font-weight: 700;
     letter-spacing: 1px;
     color: var(--heading-color);
     text-decoration: none;
+}
+
+/* "Søg" i burgermenuen er en knap, men skal ligne de andre links */
+.mobile-menu button {
+    padding: 0;
+    border: none;
+    background: none;
+    line-height: normal;
+    cursor: pointer;
 }
 
 /* Siden bag menuen kan ikke scrolles, mens menuen er åben */
@@ -246,8 +383,22 @@ body.menu-open .logo {
     color: var(--text-color);
 }
 
+/* Stor overskrift over teksten i headerbilledet */
+.hero-title {
+    font-family: var(--font-heading); /* Antonio */
+    font-weight: 700;
+    margin-bottom: 28px;
+    font-size: 4.5rem;
+    line-height: 1;
+    letter-spacing: 2px;
+    text-align: left;
+    text-transform: none;
+    color: var(--text-color);
+    opacity: 1;
+}
+
 .hero-text {
-    font-size: 1.5rem; /* 24px */
+    font-size: 1.5rem; /* 24px – subheading, ikke brødtekst */
     line-height: 1.6;
     margin-bottom: 40px;
 }
@@ -325,9 +476,9 @@ body.menu-open .logo {
         /* Menuen bliver mindre, så den ikke støder ind i logoet */
         @media (max-width: 1200px) {
             nav { gap: 2px; }
-            .nav-left a, .nav-right a { font-size: 0.95rem; padding: 8px 10px; }
+            .nav-left a, .nav-right a { font-size: 1.05rem; padding: 8px 10px; }
             .logo { font-size: 1.75rem; }
-            header { padding-left: 24px; column-gap: 12px; }
+            header { column-gap: 12px; }
         }
 
         /* --- Responsivitet (Mobil) --- */
@@ -349,7 +500,7 @@ body.menu-open .logo {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                padding: 6px 8px 6px 22px;
+                padding: 6px var(--page-margin);
                 z-index: 10;
             }
             .logo { font-size: 1.6rem; }
@@ -359,6 +510,7 @@ body.menu-open .logo {
 
             /* Tekst og rating stables i bunden af hero */
             .hero-content { left: var(--page-margin); right: var(--page-margin); bottom: 110px; }
+            .hero-title { font-size: 3rem; margin-bottom: 20px; }
             .hero-text { font-size: 1.1rem; margin-bottom: 20px; }
             .hero-btn { font-size: 1.1rem; padding: 14px 32px; gap: 16px; }
             .hero-rating { left: var(--page-margin); right: auto; bottom: 25px; text-align: left; }
@@ -540,7 +692,7 @@ body {
 }
 
 .product-text {
-    font-size: 1.2rem;
+    font-size: var(--body-size);
     line-height: 1.4;
     margin-top: 40px;
     max-width: 560px;
@@ -556,7 +708,7 @@ body {
     position: relative;
     padding-left: 38px;
     margin-bottom: 8px;
-    font-size: 1.1rem; /* Lidt mindre end resten af produktkortet */
+    font-size: var(--body-size);
     line-height: 1.4;
 }
 
@@ -575,7 +727,7 @@ body {
 
 .product-read-more {
     display: inline-block;
-    font-size: 1.3rem;
+    font-size: var(--body-size);
     font-style: italic;
     color: inherit;
     text-decoration: none;
@@ -587,7 +739,7 @@ body {
 }
 
 .product-color-label {
-    font-size: 1.3rem;
+    font-size: var(--body-size);
     margin-top: 60px;
 }
 
@@ -646,10 +798,7 @@ body {
 
     .product-name { font-size: 1.8rem; }
     .product-price { font-size: 1.3rem; }
-    .product-read-more,
-    .product-color-label { font-size: 1.1rem; }
-    .product-checklist li { font-size: 0.95rem; }
-    .product-text { font-size: 1rem; margin-top: 24px; }
+    .product-text { margin-top: 24px; }
     .product-color-label { margin-top: 30px; }
     .product-showcase .buy-button { max-width: none; }
 }
@@ -764,7 +913,7 @@ body {
 .accordion-item p {
     padding-bottom: 35px;
     max-width: 560px;
-    font-size: 0.9rem;
+    font-size: var(--body-size);
     line-height: 1.6;
     color: #2f2b28;
 }
@@ -806,7 +955,6 @@ body {
     }
 
     .accordion-item p {
-        font-size: 0.9rem;
         padding-bottom: 25px;
     }
 }
@@ -826,17 +974,20 @@ body {
   color: #3D3529;
 }
 
-.split-text h1 {
+.split-text .headline-left {
   font-family: var(--font-heading);
   font-size: 2rem; 
   color: var(--heading-color);
   text-transform: uppercase;
   letter-spacing: 2px;
   margin-bottom: 20px;
+  font-weight: 700; /* "Nyhed" er en lille etiket over overskriften – ikke selv en overskrift */
+  line-height: normal;
+  opacity: 0.9;
 }
 
 .split-text p {
-  font-size: 1rem;
+  font-size: var(--body-size);
   line-height: 1.8; 
   max-width: 520px;
   opacity: 0.9;
@@ -901,11 +1052,14 @@ body {
     padding: 60px var(--page-margin) 100px;
 }
 
-.gallery-section h1 {
+.gallery-section h2 {
     text-align: center;
     font-size: 48px;
     margin-bottom: 50px;
     color: var(--heading-color);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    opacity: 0.9;
 }
 
 /* Tre Instagram-kort side om side */
@@ -935,7 +1089,7 @@ body {
 
 /* Mobil: kortene stables under hinanden */
 @media (max-width: 768px) {
-    .gallery-section h1 {
+    .gallery-section h2 {
         font-size: 2rem;
         margin-bottom: 30px;
     }
@@ -1066,7 +1220,7 @@ footer {
 }
 
 /* Link-kolonner */
-.footer-column h3 {
+.footer-column h2 {
     font-size: 1.5rem;
     letter-spacing: 1px;
     margin-bottom: 24px;
@@ -1080,7 +1234,7 @@ footer {
 }
 
 .footer-column a {
-    font-size: 1rem;
+    font-size: var(--body-size);
     letter-spacing: 0.5px;
     color: var(--heading-color);
     text-decoration: none;
@@ -1193,7 +1347,7 @@ footer {
         font-size: 2.4rem;
     }
 
-    .footer-column h3 {
+    .footer-column h2 {
         font-size: 1.3rem;
         margin-bottom: 20px;
     }
@@ -1202,9 +1356,6 @@ footer {
         gap: 16px;
     }
 
-    .footer-column a {
-        font-size: 0.95rem;
-    }
 
     .payment-icons {
         gap: 18px;
@@ -1263,7 +1414,7 @@ body {
 .about-container {
     width: 100%;
     min-height: 100vh;
-    padding: 30px var(--page-margin) 80px;
+    padding: 110px var(--page-margin) 80px; /* Plads til den faste navbar i toppen */
 }
 
 /* Rund tilbage-knap med pil */
@@ -1314,7 +1465,7 @@ body {
 
 .text-block {
     max-width: 400px;
-    font-size: 1rem;
+    font-size: var(--body-size);
     line-height: 1.75;
     color: var(--heading-color);
 }
@@ -1323,7 +1474,7 @@ body {
 .text-block h2 {
     margin-top: 1.75em;
     font-family: var(--font-body);
-    font-size: 1rem;
+    font-size: var(--body-size);
     font-weight: 700;
     line-height: 1.75;
 }

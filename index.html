@@ -13,6 +13,27 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Strukturerede data: fortæller søgemaskiner, at siden sælger Lumina Bloom til 1995 kr. -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "Lumina Bloom",
+        "description": "Bærbar Bluetooth-højtaler med op til 18 timers spilletid, kraftfuld lyd, LED-lys og Social Connect.",
+        "image": "images/luminagreen.webp",
+        "brand": {
+            "@type": "Brand",
+            "name": "Lumina"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "1995.00",
+            "priceCurrency": "DKK",
+            "availability": "https://schema.org/InStock"
+        }
+    }
+    </script>
 </head>
 <body>
     <section class="hero">
@@ -28,13 +49,24 @@
             <a href="index.html" class="logo">LUMINA</a>
             <nav class="nav-right">
                 <!-- Ikoner i stedet for tekst – aria-label giver dem et navn til skærmlæsere -->
-                <a href="#" class="nav-icon" aria-label="Søg">
+                <button type="button" class="nav-icon search-toggle" aria-label="Søg" aria-expanded="false" aria-controls="search-panel">
                     <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
-                </a>
+                </button>
                 <a href="#" class="nav-icon" aria-label="Kurv">
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.2 12.1a1 1 0 0 1-1 .9H7.2a1 1 0 0 1-1-.9z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
                 </a>
             </nav>
+
+            <!-- Søgefelt: folder ud under navbaren, når man klikker på luppen -->
+            <form class="search-panel" id="search-panel" role="search" hidden>
+                <label for="search-input" class="visually-hidden">Søg på siden</label>
+                <svg class="search-panel-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+                <input type="search" id="search-input" name="q" placeholder="Søg efter fx farver, batteri eller produktspecifikationer" autocomplete="off">
+                <button type="submit" class="search-submit">Søg</button>
+                <button type="button" class="search-close" aria-label="Luk søgning">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+                </button>
+            </form>
 
             <!-- Burgermenu: vises kun på mobil -->
             <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Menu">
@@ -48,14 +80,14 @@
                 <a href="#produktinfo">Produktinfo</a>
                 <a href="about.html">Om os</a>
                 <a href="#kontakt">Kontakt</a>
-                <a href="#">Søg</a>
+                <button type="button" class="mobile-search-link">Søg</button>
                 <a href="#">Kurv</a>
             </nav>
         </header>
 
         <!-- Tekst og knap nederst til venstre -->
         <div class="hero-content">
-            <h1 class="visually-hidden">Lumina Bloom</h1>
+            <h1 class="hero-title">Lumina Bloom</h1>
             <p class="hero-text">
                 Bærbar højtaler med 18 timers spilletid og kraftfuld lyd. Designet til at følge din livsstil.
             </p>
@@ -84,7 +116,11 @@
             <div class="product-showcase-info">
                 <h2 class="product-name">Lumina Bloom</h2>
                 <p class="product-type">Bluetooth højtaler</p>
-                <p class="product-price">1995,- <span class="product-price-unit">/ STK</span></p>
+                <!-- Prisen: skærmlæsere læser den skjulte tekst, alle andre ser "1995,- / STK" -->
+                <p class="product-price">
+                    <span class="visually-hidden">Pris: 1995 kroner pr. stk.</span>
+                    <span aria-hidden="true"><data value="1995">1995,-</data> <span class="product-price-unit">/ STK</span></span>
+                </p>
 
                 <p class="product-text">
                     Kraftfuld lyd i et blødt og minimalistisk design. Op til 18 timers spilletid, justerbart LED-lys og Social Connect. Skabt til at dele musikken, hvor du er.
@@ -193,7 +229,7 @@
 
     <section class="split-section">
       <div class="split-text">
-        <h1 class="headline-left">Nyhed</h1>
+        <p class="headline-left">Nyhed</p>
         <h2 class="headline-sub">SOCIAL CONNECT</h2>
         <p>Social Connect er en smart og intuitiv funktion, der gør det let for dig og dine venner at kombinere jeres musiksmag i én fælles playliste – direkte i Lumina app’en. 
 
@@ -209,7 +245,7 @@ Appen er gratis og tilgængelig i App Store og Google Play.</p>
     </section>
 
    <section class="gallery-section">
-    <h1>Følg os på sociale medier</h1>
+    <h2>Følg os på sociale medier</h2>
 
     <!-- Tre Instagram-opslag side om side -->
     <div class="instagram-cards">
@@ -247,7 +283,7 @@ Appen er gratis og tilgængelig i App Store og Google Play.</p>
             </div>
 
             <div class="footer-column">
-                <h3>Kundeservice</h3>
+                <h2>Kundeservice</h2>
                 <ul>
                     <li><a href="#">Kontakt Os</a></li>
                     <li><a href="#">Levering &amp; Forsendelse</a></li>
@@ -258,7 +294,7 @@ Appen er gratis og tilgængelig i App Store og Google Play.</p>
             </div>
 
             <div class="footer-column">
-                <h3>Virksomheden</h3>
+                <h2>Virksomheden</h2>
                 <ul>
                     <li><a href="about.html">Om Lumina Group</a></li>
                     <li><a href="#">Presse</a></li>
@@ -267,7 +303,7 @@ Appen er gratis og tilgængelig i App Store og Google Play.</p>
             </div>
 
             <div class="footer-column footer-social">
-                <h3>Social</h3>
+                <h2>Social</h2>
                 <ul>
                     <li>
                         <a href="https://www.instagram.com" target="_blank" rel="noopener">
