@@ -36,6 +36,53 @@
     </script>
 </head>
 <body>
+    <header>
+        <nav class="nav-left">
+            <a href="#shop">Shop</a>
+            <a href="#produktinfo">Produktinfo</a>
+            <a href="about.html">Om os</a>
+            <a href="#kontakt">Kontakt</a>
+        </nav>
+        <a href="index.html" class="logo">LUMINA</a>
+        <nav class="nav-right">
+            <!-- Ikoner i stedet for tekst – aria-label giver dem et navn til skærmlæsere -->
+            <button type="button" class="nav-icon search-toggle" aria-label="Søg" aria-expanded="false" aria-controls="search-panel">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+            </button>
+            <a href="#" class="nav-icon" aria-label="Kurv">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.2 12.1a1 1 0 0 1-1 .9H7.2a1 1 0 0 1-1-.9z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+            </a>
+        </nav>
+
+        <!-- Søgefelt: folder ud under navbaren, når man klikker på luppen -->
+        <form class="search-panel" id="search-panel" role="search" hidden>
+            <label for="search-input" class="visually-hidden">Søg på siden</label>
+            <svg class="search-panel-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+            <input type="search" id="search-input" name="q" placeholder="Søg efter fx farver, batteri eller produktspecifikationer" autocomplete="off">
+            <button type="submit" class="search-submit">Søg</button>
+            <button type="button" class="search-close" aria-label="Luk søgning">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+            </button>
+        </form>
+
+        <!-- Burgermenu: vises kun på mobil -->
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav class="mobile-menu" id="mobile-menu" aria-label="Menu" hidden>
+            <a href="#shop">Shop</a>
+            <a href="#produktinfo">Produktinfo</a>
+            <a href="about.html">Om os</a>
+            <a href="#kontakt">Kontakt</a>
+            <button type="button" class="mobile-search-link">Søg</button>
+            <a href="#">Kurv</a>
+        </nav>
+    </header>
+
+    <main>
     <section class="hero">
         <!-- Browseren vælger selv den mindste version, der stadig er skarp på skærmen -->
         <img src="images/hero-1600.webp"
@@ -47,52 +94,6 @@
              fetchpriority="high"
              alt="Kvinde balancerer en lyseblå Lumina Bloom-højtaler på hovedet"
              class="hero-image">
-
-        <header>
-            <nav class="nav-left">
-                <a href="#shop">Shop</a>
-                <a href="#produktinfo">Produktinfo</a>
-                <a href="about.html">Om os</a>
-                <a href="#kontakt">Kontakt</a>
-            </nav>
-            <a href="index.html" class="logo">LUMINA</a>
-            <nav class="nav-right">
-                <!-- Ikoner i stedet for tekst – aria-label giver dem et navn til skærmlæsere -->
-                <button type="button" class="nav-icon search-toggle" aria-label="Søg" aria-expanded="false" aria-controls="search-panel">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
-                </button>
-                <a href="#" class="nav-icon" aria-label="Kurv">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.2 12.1a1 1 0 0 1-1 .9H7.2a1 1 0 0 1-1-.9z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
-                </a>
-            </nav>
-
-            <!-- Søgefelt: folder ud under navbaren, når man klikker på luppen -->
-            <form class="search-panel" id="search-panel" role="search" hidden>
-                <label for="search-input" class="visually-hidden">Søg på siden</label>
-                <svg class="search-panel-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
-                <input type="search" id="search-input" name="q" placeholder="Søg efter fx farver, batteri eller produktspecifikationer" autocomplete="off">
-                <button type="submit" class="search-submit">Søg</button>
-                <button type="button" class="search-close" aria-label="Luk søgning">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
-                </button>
-            </form>
-
-            <!-- Burgermenu: vises kun på mobil -->
-            <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-
-            <nav class="mobile-menu" id="mobile-menu" aria-label="Menu" hidden>
-                <a href="#shop">Shop</a>
-                <a href="#produktinfo">Produktinfo</a>
-                <a href="about.html">Om os</a>
-                <a href="#kontakt">Kontakt</a>
-                <button type="button" class="mobile-search-link">Søg</button>
-                <a href="#">Kurv</a>
-            </nav>
-        </header>
 
         <!-- Tekst og knap nederst til venstre -->
         <div class="hero-content">
@@ -112,8 +113,6 @@
             <p aria-hidden="true">4,8/5 ★ 4.392 anmeldelser</p>
         </div>
     </section>
-
-<script src="script.js"></script>
 
     <!-- PRODUKT SEKTION -->
     <section class="products-section" id="shop">
@@ -315,6 +314,7 @@ Appen er gratis og tilgængelig i App Store og Google Play.</p>
             </p>
         </div>
     </section>
+    </main>
 
     <footer id="kontakt">
         <div class="footer-top">
