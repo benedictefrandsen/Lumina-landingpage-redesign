@@ -240,7 +240,7 @@ I stedet for at én person står for musikken til en fest eller et socialt arran
 Appen er gratis og tilgængelig i App Store og Google Play.</p>
       </div>
       <div class="split-image">
-        <img loading="lazy" src="images/socialconnect.webp" alt="Lumina app'en med Social Connect, hvor man inviterer venner og blender playlister på Spotify">
+        <img loading="lazy" src="images/socialconnect.webp" alt="Lumina-appen med Social Connect og fælles Spotify-playlister">
       </div>
     </section>
 
@@ -250,36 +250,68 @@ Appen er gratis og tilgængelig i App Store og Google Play.</p>
     <!-- Tre Instagram-opslag side om side -->
     <div class="instagram-cards">
         <a href="https://www.instagram.com" target="_blank" rel="noopener" class="instagram-card">
-            <img loading="lazy" src="images/instagram-card-1.webp" alt="Instagram-opslag fra Luminaaudio: person der holder en lyserød Lumina-højtaler op foran ansigtet">
+            <img loading="lazy" src="images/instagram-card-1.webp" alt="Instagram-opslag: person med en lyserød Lumina-højtaler foran ansigtet">
         </a>
         <a href="https://www.instagram.com" target="_blank" rel="noopener" class="instagram-card">
-            <img loading="lazy" src="images/instagram-card-2.webp" alt="Instagram-opslag fra Luminaaudio: kvinde der laver yoga med en Lumina-højtaler på gulvet">
+            <img loading="lazy" src="images/instagram-card-2.webp" alt="Instagram-opslag: kvinde laver yoga ved en Lumina-højtaler">
         </a>
         <a href="https://www.instagram.com" target="_blank" rel="noopener" class="instagram-card">
-            <img loading="lazy" src="images/instagram-card-3.webp" alt="Instagram-opslag fra Luminaaudio: to Lumina-højtalere på en reol">
+            <img loading="lazy" src="images/instagram-card-3.webp" alt="Instagram-opslag: to Lumina-højtalere på en reol">
         </a>
     </div>
     </section>
-   
+
+    <!-- NYHEDSBREV SEKTION: billede til venstre, tilmelding til højre -->
+    <section class="newsletter-section" aria-labelledby="newsletter-title">
+        <div class="newsletter-image">
+            <img loading="lazy" src="images/luminagroup1.webp" alt="To personer lytter til musik fra en beige Lumina-højtaler i en lys stue">
+        </div>
+
+        <div class="newsletter-content">
+            <p class="newsletter-eyebrow">Lumina Group</p>
+            <h2 id="newsletter-title">Meget mere end god lyd</h2>
+            <p class="newsletter-intro">
+                Tilmeld dig vores nyhedsbrev og få eksklusive tilbud om nye produkter og events – direkte i din indbakke.
+            </p>
+
+            <ul class="newsletter-perks">
+                <li>15% studierabat</li>
+                <li>Invitationer til events i København og Aarhus</li>
+                <li>Eksklusive guides til bedre lyd i hjemmet</li>
+                <li>Særlige tilbud kun for abonnenter</li>
+            </ul>
+
+            <form class="newsletter-form" id="newsletter-form">
+                <div class="newsletter-fields">
+                    <div class="newsletter-field">
+                        <label for="newsletter-email">E-mail</label>
+                        <input type="email" id="newsletter-email" name="email" placeholder="din@email.dk" autocomplete="email" required>
+                    </div>
+                    <div class="newsletter-field">
+                        <label for="newsletter-name">Fornavn</label>
+                        <input type="text" id="newsletter-name" name="fornavn" placeholder="Dit fornavn" autocomplete="given-name">
+                    </div>
+                </div>
+
+                <div class="newsletter-consent">
+                    <input type="checkbox" id="newsletter-consent" name="samtykke" required>
+                    <label for="newsletter-consent">Jeg accepterer markedsføring på e-mail og kan til enhver tid afmelde mig igen.</label>
+                </div>
+
+                <button type="submit" class="newsletter-submit">Tilmeld mig</button>
+            </form>
+
+            <p class="newsletter-privacy">
+                Ved tilmelding behandler Lumina Audio dine oplysninger i overensstemmelse med vores privatlivspolitik. Du kan altid trække dit samtykke tilbage via linket i bunden af vores e-mails.
+            </p>
+        </div>
+    </section>
 
     <footer id="kontakt">
         <div class="footer-top">
-            <!-- Logo og nyhedsbrev -->
+            <!-- Logo -->
             <div class="footer-brand">
                 <a href="index.html" class="footer-logo">LUMINA</a>
-
-                <form class="footer-newsletter" id="newsletter-form">
-                    <label for="newsletter-email">Tilmeld dig nyhedsbrevet</label>
-                    <div class="newsletter-field">
-                        <div class="newsletter-input">
-                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5z"/></svg>
-                            <input type="email" id="newsletter-email" placeholder="E-mail" autocomplete="email" required>
-                        </div>
-                        <button type="submit" class="newsletter-submit" aria-label="Tilmeld nyhedsbrevet">
-                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-                        </button>
-                    </div>
-                </form>
             </div>
 
             <div class="footer-column">

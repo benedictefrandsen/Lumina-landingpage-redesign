@@ -43,6 +43,18 @@ html, body {
   scroll-behavior: smooth; /* Blød scroll ved anker-links i menuen */
 }
 
+/* Samme farve bag hele siden, så der ikke kommer en hvid kant under footeren */
+html {
+  background-color: var(--bg-color);
+}
+
+/* Slår "elastik-scroll" fra (Chrome og Safari på Mac), så man ikke kan trække
+   siden forbi toppen eller bunden – footeren bliver liggende helt nede ved kanten */
+html,
+body {
+  overscroll-behavior: none;
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -375,6 +387,24 @@ body.menu-open .logo {
 }
 
 /* --- Hero tekst og knap (nederst til venstre) --- */
+/* Mørk toning bag teksten i headerbilledet: kraftigst nederst til venstre (overskrift, tekst, knap)
+   og nederst (stjernerne), så den hvide tekst får nok kontrast mod det grå billede */
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(to top, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.25) 35%, rgba(0, 0, 0, 0) 60%),
+        linear-gradient(to right, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.15) 40%, rgba(0, 0, 0, 0) 60%);
+    pointer-events: none;
+}
+
+.hero-content,
+.hero-rating {
+    z-index: 1; /* Teksten ligger over toningen */
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.25);
+}
+
 .hero-content {
     position: absolute;
     left: var(--page-margin);
@@ -483,15 +513,6 @@ body.menu-open .logo {
 
         /* --- Responsivitet (Mobil) --- */
         @media (max-width: 768px) {
-            /* Svag mørk toning i bunden, så den hvide tekst kan læses oven på billedet */
-            .hero::after {
-                content: "";
-                position: absolute;
-                inset: 50% 0 0 0;
-                background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.45));
-                pointer-events: none;
-            }
-            .hero-content, .hero-rating { z-index: 1; }
 
             h1 { font-size: 3.5rem; }
 
@@ -1107,6 +1128,201 @@ body {
     }
 }
 
+/* --- Nyhedsbrev: billede til venstre, tilmelding til højre --- */
+.newsletter-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+    padding: 0 var(--page-margin); /* Samme margen som resten af siden */
+    margin-bottom: 80px; /* Luft ned til footeren */
+}
+
+.newsletter-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 600px;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.newsletter-content {
+    align-self: center;
+    max-width: 640px;
+    padding: 40px 0 40px 80px;
+    color: var(--heading-color);
+}
+
+.newsletter-eyebrow {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 48px;
+}
+
+.newsletter-content h2 {
+    font-size: 2.6rem;
+    line-height: 1.1;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+}
+
+.newsletter-intro {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    margin-bottom: 36px;
+}
+
+/* Liste med flueben */
+.newsletter-perks {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 44px;
+}
+
+.newsletter-perks li {
+    position: relative;
+    padding-left: 30px;
+    font-size: var(--body-size);
+}
+
+.newsletter-perks li::before {
+    content: "";
+    position: absolute;
+    left: 3px;
+    top: 0.15em;
+    width: 6px;
+    height: 11px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+}
+
+/* Formular */
+.newsletter-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-bottom: 22px;
+}
+
+.newsletter-field label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.newsletter-field input {
+    width: 100%;
+    padding: 6px 0 12px;
+    border: none;
+    border-bottom: 1.5px solid var(--heading-color);
+    background: none;
+    font-size: 1.1rem;
+    color: var(--heading-color);
+    outline: none;
+}
+
+.newsletter-field input::placeholder {
+    color: #6f6962; /* Kontrast ca. 4,6:1 mod baggrunden */
+}
+
+.newsletter-field input:focus-visible {
+    border-bottom-width: 2.5px;
+}
+
+.newsletter-consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 28px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.newsletter-consent input {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    margin-top: 1px;
+    accent-color: var(--heading-color);
+    cursor: pointer;
+}
+
+.newsletter-consent label {
+    cursor: pointer;
+}
+
+.newsletter-submit {
+    padding: 18px 52px;
+    border: none;
+    border-radius: 10px;
+    background-color: #2f2b28;
+    color: #fff;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.newsletter-submit:hover {
+    background-color: #1c1a18;
+}
+
+.newsletter-privacy {
+    margin-top: 48px;
+    font-size: 0.8rem;
+    line-height: 1.6;
+}
+
+/* Tablet og mobil: billedet over teksten */
+@media (max-width: 900px) {
+    .newsletter-section {
+        grid-template-columns: 1fr;
+    }
+
+    .newsletter-image img {
+        min-height: 0;
+        height: 360px;
+        border-radius: 20px;
+    }
+
+    .newsletter-content {
+        max-width: none;
+        padding: 36px 0 0;
+    }
+
+    .newsletter-eyebrow {
+        font-size: 2.2rem;
+        margin-bottom: 28px;
+    }
+
+    .newsletter-content h2 {
+        font-size: 2rem;
+    }
+
+    .newsletter-intro {
+        font-size: var(--body-size);
+    }
+
+    .newsletter-fields {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+
+    .newsletter-submit {
+        width: 100%;
+    }
+}
+
 /* --- Footer --- */
 footer {
     width: 100%;
@@ -1133,90 +1349,6 @@ footer {
     color: var(--heading-color);
     text-decoration: none;
     margin-left: 25px;
-}
-
-/* Nyhedsbrev */
-.footer-newsletter {
-    margin-top: 60px;
-    max-width: 300px;
-}
-
-.footer-newsletter label {
-    display: block;
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 2px;
-    margin-bottom: 30px;
-}
-
-.newsletter-field {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.newsletter-input {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    padding-bottom: 14px;
-    border-bottom: 1px solid var(--heading-color);
-}
-
-.newsletter-input svg {
-    flex-shrink: 0;
-    width: 24px;
-    height: 24px;
-    fill: currentColor;
-}
-
-.newsletter-input input {
-    width: 100%;
-    border: none;
-    background: none;
-    font-size: 0.95rem;
-    letter-spacing: 1px;
-    color: var(--heading-color);
-    outline: none;
-}
-
-.newsletter-input input::placeholder {
-    color: #6f6962;
-}
-
-.newsletter-input:focus-within {
-    border-bottom-width: 2px;
-}
-
-.newsletter-submit {
-    flex-shrink: 0;
-    display: grid;
-    place-items: center;
-    width: 34px;
-    height: 34px;
-    margin-bottom: 14px;
-    border: 2px solid var(--heading-color);
-    border-radius: 50%;
-    background: none;
-    color: var(--heading-color);
-    cursor: pointer;
-    transition: background-color 0.2s, color 0.2s;
-}
-
-.newsletter-submit:hover {
-    background-color: var(--heading-color);
-    color: #bfbdb8;
-}
-
-.newsletter-submit svg {
-    width: 18px;
-    height: 18px;
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
 }
 
 /* Link-kolonner */
@@ -1312,10 +1444,6 @@ footer {
     .footer-top {
         grid-template-columns: 1fr 1fr;
         gap: 50px 40px;
-    }
-
-    .footer-newsletter {
-        margin-top: 40px;
     }
 
     .footer-bottom {
