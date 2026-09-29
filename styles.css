@@ -1527,7 +1527,7 @@ footer {
     font-family: var(--font-body);
 }
 
-/* Alle overskrifter bruger Antonio */
+/* Alle overskrifter bruger fonten Antonio */
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
     color: var(--heading-color);
@@ -1543,7 +1543,7 @@ body {
 .about-container {
     width: 100%;
     min-height: 100vh;
-    padding: 110px var(--page-margin) 80px; /* Plads til den faste navbar i toppen */
+    padding: 110px var(--page-margin) 80px; 
 }
 
 /* Rund tilbage-knap med pil */
@@ -1608,7 +1608,7 @@ body {
     margin-left: -40px; /* Billedet har luft i venstre side – så skriften flugter med teksten */
 }
 
-/* "Vores vision" står som fed brødtekst ligesom i designet */
+/* "Vores vision" står som fed brødtekst */
 .text-block h2 {
     margin-top: 1.75em;
     font-family: var(--font-body);
@@ -1643,7 +1643,7 @@ body {
     }
 }
 
-/* Toast / pop-up if purchase */
+/* Toast / pop-up ved køb */
 .cart-toast {
   position: fixed;
   left: 50%;
@@ -1661,18 +1661,15 @@ body {
   pointer-events: none;
 }
 
-/* When toast is visible */
 .cart-toast.visible {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
 }
 
-/* Smaller devices: move toast slightly up */
 @media (max-width: 480px) {
   .cart-toast { bottom: 18px; padding: 10px 14px; font-size: 14px; }
 }
 
-/* Ensure main content fills available height */
 main {
   flex: 1 0 auto;
 }
