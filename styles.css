@@ -125,7 +125,7 @@ footer[id] {
     line-height: 1;
 }
 
-nav {
+header nav {
     display: flex;
     align-items: center;
     gap: 6px;
@@ -506,7 +506,7 @@ body.menu-open .logo {
         /* --- Responsivitet (Tablet / lille laptop) --- */
         /* Menuen bliver mindre, så den ikke støder ind i logoet */
         @media (max-width: 1200px) {
-            nav { gap: 2px; }
+            header nav { gap: 2px; }
             .nav-left a, .nav-right a { font-size: 1.05rem; padding: 8px 10px; }
             .logo { font-size: 1.75rem; }
             header { column-gap: 12px; }

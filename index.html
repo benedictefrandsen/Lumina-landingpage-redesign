@@ -116,13 +116,13 @@
 
     <!-- PRODUKT SEKTION -->
     <section class="products-section" id="shop">
-        <div class="product-showcase">
+        <article class="product-showcase" aria-labelledby="product-title">
             <div class="product-showcase-image">
                 <img loading="lazy" src="images/luminagreen.webp" alt="Lumina Bloom højtaler i Sage Green" id="product-image">
             </div>
 
             <div class="product-showcase-info">
-                <h2 class="product-name">Lumina Bloom</h2>
+                <h2 class="product-name" id="product-title">Lumina Bloom</h2>
                 <p class="product-type">Bluetooth højtaler</p>
                 <!-- Prisen: skærmlæsere læser den skjulte tekst, alle andre ser "1995,- / STK" -->
                 <p class="product-price">
@@ -156,7 +156,7 @@
 
                 <button class="buy-button">Køb nu</button>
             </div>
-        </div>
+        </article>
 
     </section>
 
@@ -323,8 +323,8 @@ Appen er gratis og tilgængelig i App Store og Google Play.</p>
                 <a href="index.html" class="footer-logo">LUMINA</a>
             </div>
 
-            <div class="footer-column">
-                <h2>Kundeservice</h2>
+            <nav class="footer-column" aria-labelledby="footer-kundeservice">
+                <h2 id="footer-kundeservice">Kundeservice</h2>
                 <ul>
                     <li><a href="#">Kontakt Os</a></li>
                     <li><a href="#">Levering &amp; Forsendelse</a></li>
@@ -332,19 +332,19 @@ Appen er gratis og tilgængelig i App Store og Google Play.</p>
                     <li><a href="#">Terms &amp; Condition</a></li>
                     <li><a href="#">Privacy Policy</a></li>
                 </ul>
-            </div>
+            </nav>
 
-            <div class="footer-column">
-                <h2>Virksomheden</h2>
+            <nav class="footer-column" aria-labelledby="footer-virksomheden">
+                <h2 id="footer-virksomheden">Virksomheden</h2>
                 <ul>
                     <li><a href="about.html">Om Lumina Group</a></li>
                     <li><a href="#">Presse</a></li>
                     <li><a href="#">Jobmuligheder</a></li>
                 </ul>
-            </div>
+            </nav>
 
-            <div class="footer-column footer-social">
-                <h2>Social</h2>
+            <nav class="footer-column footer-social" aria-labelledby="footer-social">
+                <h2 id="footer-social">Social</h2>
                 <ul>
                     <li>
                         <a href="https://www.instagram.com" target="_blank" rel="noopener">
@@ -371,7 +371,7 @@ Appen er gratis og tilgængelig i App Store og Google Play.</p>
                         </a>
                     </li>
                 </ul>
-            </div>
+            </nav>
         </div>
 
         <div class="footer-bottom">
